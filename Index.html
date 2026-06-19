@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)file:///Users/nitishte/Downloads/portfolio_4.html#about -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nitish Thevarkkattu Easwarankutty | VoIP &amp; Network Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./Index_files/css2" rel="stylesheet">
+<style>
+  :root{
+    --bg: #EEF1F4;
+    --paper: #FFFFFF;
+    --paper-2: #F6F8FA;
+    --ink: #16222E;
+    --ink-muted: #5B6B7A;
+    --line: #C9D3DC;
+    --blue: #1D4E89;
+    --blue-soft: rgba(29,78,137,0.10);
+    --amber: #C97D2A;
+    --amber-soft: rgba(201,125,42,0.12);
+    --radius: 8px;
+    --display: 'Space Grotesk', sans-serif;
+    --serif: 'Source Serif 4', serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background-color:var(--bg);
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:40px 40px;
+    background-position:-1px -1px;
+    color:var(--ink);
+    font-family:var(--serif);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    opacity:1;
+  }
+  body::before{
+    content:'';
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--blue-soft);}
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:0.72rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--blue);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:1px solid var(--line);
+    background:var(--paper);
+    padding:7px 12px;
+    border-radius:4px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:7px;height:7px;
+    background:var(--amber);
+    flex-shrink:0;
+  }
+
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px;}
+  section{padding:84px 0;border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+
+  h2{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.5rem;
+    color:var(--ink);
+    margin-bottom:8px;
+  }
+  .section-tag{
+    font-family:var(--mono);
+    font-size:0.68rem;
+    font-weight:600;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-muted);
+    margin-bottom:10px;
+    display:block;
+  }
+  .section-head{
+    margin-bottom:40px;
+    padding-bottom:18px;
+    border-bottom:2px solid var(--ink);
+    max-width:520px;
+  }
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(238,241,244,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 24px;
+  }
+  .nav-name{font-family:var(--mono);font-size:0.85rem;color:var(--ink);font-weight:600;letter-spacing:0.02em;}
+  .nav-links{display:flex;gap:24px;align-items:center;}
+  .nav-links a{
+    font-family:var(--display);
+    font-size:0.86rem;color:var(--ink-muted);transition:color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{color:var(--blue);}
+  .btn{
+    font-family:var(--mono);
+    font-size:0.76rem;
+    letter-spacing:0.03em;
+    padding:10px 18px;
+    border-radius:5px;
+    border:1.5px solid var(--ink);
+    color:var(--ink);
+    transition:all 0.18s;
+    white-space:nowrap;
+    display:inline-block;
+  }
+  .btn:hover, .btn:focus-visible{background:var(--ink);color:var(--paper);}
+  .btn.solid{background:var(--blue);color:var(--paper);border-color:var(--blue);}
+  .btn.solid:hover{background:#163E6E;border-color:#163E6E;}
+
+  /* HERO */
+  .hero{
+    padding:96px 0 80px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:44px;
+    align-items:center;
+  }
+  .hero-content{max-width:600px;}
+  .hero h1{
+    font-family:var(--display);
+    font-size:clamp(2rem, 4.6vw, 2.9rem);
+    font-weight:700;
+    margin:20px 0 14px;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+  .hero p.tagline{
+    font-size:1.08rem;
+    color:var(--ink-muted);
+    margin-bottom:32px;
+  }
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
+
+  .hero-figure{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:18px 16px 14px;
+  }
+  .fig-caption{
+    display:block;text-align:center;
+    font-family:var(--mono);font-size:0.64rem;font-weight:600;
+    letter-spacing:0.08em;text-transform:uppercase;
+    color:var(--ink-muted);margin-bottom:10px;
+  }
+  .hero-figure svg{width:100%;height:auto;display:block;}
+  .hero-figure path{fill:none;stroke:var(--blue);stroke-width:1.6;opacity:0.65;}
+  .hero-figure circle{fill:var(--paper);stroke:var(--blue);stroke-width:2;}
+  .hero-figure text{
+    font-family:'IBM Plex Mono';font-size:13px;font-weight:700;
+    fill:var(--ink);text-anchor:middle;
+  }
+
+  /* TITLE BLOCK (stats strip, drafting-style) */
+  .titleblock{border-bottom:1px solid var(--line);background:var(--paper-2);}
+  .tb-row{display:grid;grid-template-columns:repeat(4,1fr);}
+  .tb-cell{
+    padding:22px 22px;
+    border-right:1px solid var(--line);
+  }
+  .tb-cell:last-child{border-right:none;}
+  .tb-cell .tb-label{
+    font-family:var(--mono);font-size:0.64rem;letter-spacing:0.08em;text-transform:uppercase;
+    color:var(--ink-muted);margin-bottom:6px;display:block;
+  }
+  .tb-cell .tb-value{
+    font-family:var(--display);font-size:1.4rem;font-weight:600;color:var(--blue);
+  }
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;}
+  .about-grid p{color:var(--ink-muted);font-size:1.02rem;max-width:560px;}
+  .facts{display:flex;flex-direction:column;gap:14px;}
+  .fact{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-left:3px solid var(--amber);
+    border-radius:4px;
+    padding:14px 16px;
+  }
+  .fact .label{
+    font-family:var(--mono);font-size:0.64rem;letter-spacing:0.06em;
+    text-transform:uppercase;color:var(--ink-muted);margin-bottom:5px;
+  }
+  .fact .value{font-family:var(--display);font-size:0.92rem;color:var(--ink);}
+
+  /* EXPERIENCE TIMELINE */
+  .timeline{display:flex;flex-direction:column;gap:0;}
+  .tl-item{
+    position:relative;
+    padding:0 0 38px 30px;
+    border-left:2px solid var(--line);
+  }
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:'';
+    position:absolute;left:-5px;top:3px;
+    width:8px;height:8px;
+    background:var(--blue);
+    border:2px solid var(--bg);
+  }
+  .tl-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px;}
+  .tl-role{font-family:var(--display);font-weight:600;font-size:1.04rem;color:var(--ink);}
+  .tl-company{color:var(--blue);font-size:0.9rem;font-family:var(--display);}
+  .tl-dates{font-family:var(--mono);font-size:0.74rem;color:var(--ink-muted);white-space:nowrap;}
+  .tl-item ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+  .tl-item li{color:var(--ink-muted);font-size:0.94rem;padding-left:18px;position:relative;}
+  .tl-item li::before{content:'▸';position:absolute;left:0;color:var(--amber);}
+
+  /* PROJECT STAGES (detail callouts) */
+  .project-intro{color:var(--ink-muted);max-width:680px;margin-bottom:34px;}
+  .stage-row{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;}
+  .stage-row::before{
+    content:'';position:absolute;top:18px;left:6%;right:6%;height:1px;
+    background-image:linear-gradient(to right, var(--line) 60%, transparent 0%);
+    background-size:8px 1px;
+    z-index:0;
+  }
+  .stage{position:relative;z-index:1;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:16px 13px;transition:border-color 0.2s, transform 0.2s;}
+  .stage:hover{border-color:var(--blue);transform:translateY(-3px);}
+  .stage .num{
+    font-family:var(--mono);font-size:0.68rem;color:var(--paper);
+    background:var(--ink);width:22px;height:22px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;margin-bottom:10px;
+  }
+  .stage h3{font-family:var(--display);font-size:0.9rem;margin-bottom:7px;color:var(--ink);}
+  .stage p{font-size:0.8rem;color:var(--ink-muted);}
+
+  /* TECH STACK - terminal-block style */
+  .rack{margin-bottom:34px;}
+  .rack:last-child{margin-bottom:0;}
+  .rack-label{
+    font-family:var(--mono);font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;
+    font-weight:600;color:var(--ink);margin-bottom:13px;padding-bottom:8px;border-bottom:1px solid var(--line);
+  }
+  .port-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(150px,1fr));gap:8px;}
+  .port{
+    background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--blue);
+    border-radius:4px;padding:9px 12px;display:flex;flex-direction:column;gap:2px;
+  }
+  .port .pnum{font-family:var(--mono);font-size:0.62rem;font-weight:600;color:var(--ink-muted);}
+  .port .ptext{font-family:var(--display);font-size:0.78rem;font-weight:500;color:var(--ink);}
+
+  .competencies{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px;padding-top:26px;border-top:1px dashed var(--line);}
+  .skill-chip{
+    font-family:var(--mono);font-size:0.76rem;padding:8px 13px;border-radius:4px;
+    border:1px solid var(--line);background:var(--paper-2);color:var(--ink);
+  }
+  .skill-chip span{color:var(--amber);}
+
+  /* SOFT SKILLS */
+  .soft-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .soft-item{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:17px;}
+  .soft-item .stag{
+    font-family:var(--mono);font-size:0.62rem;color:var(--blue);letter-spacing:0.07em;
+    text-transform:uppercase;display:block;margin-bottom:6px;
+  }
+  .soft-item p{font-size:0.86rem;color:var(--ink-muted);}
+
+  /* CERTS */
+  .cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  .cert-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:20px;display:flex;gap:15px;align-items:flex-start;}
+  .cert-badge{
+    width:40px;height:40px;border-radius:4px;background:var(--amber-soft);color:var(--amber);
+    display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:0.66rem;font-weight:600;flex-shrink:0;
+  }
+  .cert-card h3{font-family:var(--display);font-size:0.95rem;margin-bottom:4px;color:var(--ink);}
+  .cert-card p{font-size:0.8rem;color:var(--ink-muted);}
+
+  /* AWARDS */
+  .awards-list{display:flex;flex-direction:column;gap:12px;}
+  .award-item{display:flex;align-items:center;gap:13px;padding:13px 17px;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);}
+  .award-item .icon{color:var(--amber);font-family:var(--mono);font-size:0.85rem;}
+  .award-item p{font-size:0.9rem;color:var(--ink);}
+
+  /* CONTACT */
+  .contact-grid{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;}
+  .contact-links{display:flex;flex-direction:column;gap:9px;}
+  .contact-links a{font-size:0.98rem;color:var(--ink-muted);transition:color 0.2s;}
+  .contact-links a:hover, .contact-links a:focus-visible{color:var(--blue);}
+
+  footer{padding:36px 0;text-align:center;}
+  footer p{font-family:var(--mono);font-size:0.72rem;color:var(--ink-muted);letter-spacing:0.03em;}
+
+  @media (max-width:720px){
+    .about-grid{grid-template-columns:1fr;}
+    .stage-row{grid-template-columns:1fr 1fr;}
+    .stage-row::before{display:none;}
+    .cert-grid{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+    .contact-grid{flex-direction:column;align-items:flex-start;}
+    .tb-row{grid-template-columns:repeat(2,1fr);}
+    .tb-cell:nth-child(2){border-right:none;}
+    .soft-grid{grid-template-columns:1fr;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-figure{max-width:360px;margin:0 auto;}
+  }
+
+  [tabindex]:focus-visible, a:focus-visible, button:focus-visible{
+    outline:2px solid var(--blue);outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="nav-name">NITISH TE</span>
+    <div class="nav-links">
+      <a href="file:///Users/nitishte/Downloads/portfolio_4.html#about">About</a>
+      <a href="file:///Users/nitishte/Downloads/portfolio_4.html#experience">Experience</a>
+      <a href="file:///Users/nitishte/Downloads/portfolio_4.html#project">Project</a>
+      <a href="file:///Users/nitishte/Downloads/portfolio_4.html#skills">Stack</a>
+      <a href="file:///Users/nitishte/Downloads/portfolio_4.html#certs">Certs</a>
+      <a href="file:///Users/nitishte/Downloads/portfolio_4.html#awards">Awards</a>
+      <a href="file:///Users/nitishte/Downloads/portfolio_4.html#contact">Contact</a>
+      <a class="btn" href="https://canva.link/7ak440e4yow6yxh" target="_blank" rel="noopener noreferrer">View CV</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-content">
+      <div class="eyebrow">Network Trace &nbsp;·&nbsp; 10+ Yrs Active</div>
+      <h1>Nitish Thevarkkattu<br>Easwarankutty</h1>
+      <p class="tagline">Telecom &amp; VoIP infrastructure engineer with 10+ years keeping enterprise voice networks running, now routing that same depth into cybersecurity and cloud.</p>
+      <div class="hero-ctas">
+        <a class="btn solid" href="https://canva.link/7ak440e4yow6yxh" target="_blank" rel="noopener noreferrer">View CV</a>
+        <a class="btn" href="file:///Users/nitishte/Downloads/portfolio_4.html#contact">Get in touch</a>
+      </div>
+    </div>
+    <div class="hero-figure">
+      <span class="fig-caption">Fig. 01 · Signal Path</span>
+      <svg viewBox="0 0 360 260" role="img" aria-label="Diagram of a network signal path from SIP to SBC to RTP to VLAN, branching to DHCP and Firewall">
+        <path d="M50 50 L160 35"></path>
+        <path d="M160 35 L290 80"></path>
+        <path d="M290 80 L210 160"></path>
+        <path d="M210 160 L80 215"></path>
+        <path d="M210 160 L300 205"></path>
+        <circle cx="50" cy="50" r="27"></circle>
+        <circle cx="160" cy="35" r="27"></circle>
+        <circle cx="290" cy="80" r="27"></circle>
+        <circle cx="210" cy="160" r="27"></circle>
+        <circle cx="80" cy="215" r="27"></circle>
+        <circle cx="300" cy="205" r="27"></circle>
+        <text x="50" y="55">SIP</text>
+        <text x="160" y="40">SBC</text>
+        <text x="290" y="85">RTP</text>
+        <text x="210" y="165">VLAN</text>
+        <text x="80" y="220">DHCP</text>
+        <text x="300" y="210">FW</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="titleblock">
+  <div class="wrap tb-row">
+    <div class="tb-cell"><span class="tb-label">Years VoIP / UC</span><span class="tb-value">10+</span></div>
+    <div class="tb-cell"><span class="tb-label">Enterprise Roles</span><span class="tb-value">03</span></div>
+    <div class="tb-cell"><span class="tb-label">Project Stages</span><span class="tb-value">05</span></div>
+    <div class="tb-cell"><span class="tb-label">AWS Certifications</span><span class="tb-value">02</span></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <span class="section-tag">01 · Profile</span>
+      <h2 style="margin-bottom:22px;">About</h2>
+      <p>Senior IT professional with 10+ years' experience in unified communications and VoIP engineering, bringing strong protocol troubleshooting and network diagnostics expertise. Currently completing a Master of Applied Information Technology at Wintec, building cybersecurity skills alongside this technical foundation. A methodical problem-solver with genuine passion for diagnosing complex technical issues, recognized across employers with multiple customer satisfaction and performance awards.</p>
+    </div>
+    <div class="facts">
+      <div class="fact"><div class="label">Based in</div><div class="value">Hamilton, New Zealand</div></div>
+      <div class="fact"><div class="label">Currently studying</div><div class="value">Master of Applied IT, Wintec (in progress)</div></div>
+      <div class="fact"><div class="label">Core depth</div><div class="value">VoIP / UC · SIP · SBC · Avaya Aura</div></div>
+      <div class="fact"><div class="label">Building toward</div><div class="value">Cybersecurity &amp; Cloud Infrastructure</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <span class="section-tag">02 · Career</span>
+    <h2 style="margin-bottom:36px;">Experience</h2>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-head">
+          <div><span class="tl-role">Senior Consultant, Infrastructure Management</span> · <span class="tl-company">Infosys India Pvt Ltd</span></div>
+          <div class="tl-dates">Jul 2022 – Dec 2025</div>
+        </div>
+        <ul>
+          <li>Handled toll-free number changes for enterprise clients, adding, deleting, or repointing TNs inside SBCE SAG groups without disrupting live call routing.</li>
+          <li>Rebuilt routing tables after moving or removing TNs within SAG groups, then created new SAG entries so each number reached the correct store.</li>
+          <li>Ran scheduled SBC health checks and caught alarms early, keeping patching cycles aligned with client change windows.</li>
+          <li>Used Linux command line tools daily to investigate SBC behaviour, applying a solid grasp of SIP, ISDN, and SBC fundamentals to resolve IP telephony issues.</li>
+          <li>Traced routing table logic inside the SBC to work out why specific calls were not landing where they should.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-head">
+          <div><span class="tl-role">TIM Lead</span> · <span class="tl-company">Tech Mahindra</span></div>
+          <div class="tl-dates">Mar 2022 – Jul 2022</div>
+        </div>
+        <ul>
+          <li>Took full ownership of the CCT project for Avaya systems, running it solo from planning through delivery.</li>
+          <li>Became first point of contact for voice incidents across call centres, working each one through to resolution.</li>
+          <li>Ran incident, problem, and change management together so recurring issues got fixed rather than just patched over.</li>
+          <li>Improved call recording reliability and supported the call centre voice solutions used across the business.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-head">
+          <div><span class="tl-role">Senior Technical Support Specialist</span> · <span class="tl-company">Innovatia India Management</span></div>
+          <div class="tl-dates">Jun 2015 – Mar 2022</div>
+        </div>
+        <ul>
+          <li>Provided Tier III support across the full Avaya PBX range, including S8300, S8500, S87xx, and S8800 servers with G650, G700, G350, and G450 gateways, resolving alarms on boards like DS-1, MEDPRO, CLAN, and power supply units.</li>
+          <li>Worked through SIP and H.323 call flow problems using Wireshark, MST, and ParseSysMon traces, then checked Session Manager and SBCE logs against the customer's actual call flow to confirm each fix.</li>
+          <li>Rebuilt customer environments in the lab to reproduce hard-to-catch issues, gathering clean logs that made root cause analysis possible instead of guesswork.</li>
+          <li>Took ownership of high-priority outage tickets end to end, coordinating with Avaya Tier 4 R&amp;D on system design bugs until each one closed out.</li>
+          <li>Designed and supported IP endpoint rollouts across the 46xx, 96xx, and 16xx series, integrating adjuncts like AAM, IVR, and CMS into existing call processing environments.</li>
+          <li>Supported IP Office IP500V2 and Server Edition sites, fixing voicemail, call recording, and remote worker registration issues for small and medium business customers.</li>
+          <li>Mentored new hires on Avaya troubleshooting and client infrastructure, and contributed to a specialist pod set up for advanced escalations.</li>
+          <li>Tracked and escalated cases through Siebel, JIRA, and ServiceNow, coordinating multi-party calls between Tier 4, SMEs, and the customer to push complex issues to resolution.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="project">
+  <div class="wrap">
+    <span class="section-tag">03 · Case Study</span>
+    <h2 style="margin-bottom:18px;">Featured Project</h2>
+    <p class="project-intro">Enterprise network build for INFO813 (Wintec), a five-stage infrastructure project spanning campus network design through to perimeter security, built end-to-end in a virtual lab environment.</p>
+    <div class="stage-row">
+      <div class="stage"><span class="num">01</span><h3>Campus Network</h3><p>Packet Tracer build with VLANs, HSRP redundancy, and EtherChannel link aggregation.</p></div>
+      <div class="stage"><span class="num">02</span><h3>Active Directory</h3><p>Domain services configured for corp.local, with user and group policy structure.</p></div>
+      <div class="stage"><span class="num">03</span><h3>IIS / DHCP / GPO</h3><p>Web services, dynamic addressing, and policy enforcement across the domain.</p></div>
+      <div class="stage"><span class="num">04</span><h3>TrueNAS Storage</h3><p>Centralised file server deployment for network-wide storage access.</p></div>
+      <div class="stage"><span class="num">05</span><h3>Fortigate Firewall</h3><p>Perimeter security layer closing out the full infrastructure stack.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <span class="section-tag">04 · Inventory</span>
+    <h2 style="margin-bottom:32px;">Technical Stack</h2>
+
+    <div class="rack">
+      <div class="rack-label">Products &amp; Systems</div>
+      <div class="port-grid">
+        <div class="port"><span class="pnum">P01</span><span class="ptext">Avaya Aura CM</span></div>
+        <div class="port"><span class="pnum">P02</span><span class="ptext">SMGR</span></div>
+        <div class="port"><span class="pnum">P03</span><span class="ptext">ASM</span></div>
+        <div class="port"><span class="pnum">P04</span><span class="ptext">AMS</span></div>
+        <div class="port"><span class="pnum">P05</span><span class="ptext">SBC</span></div>
+        <div class="port"><span class="pnum">P06</span><span class="ptext">AADS</span></div>
+        <div class="port"><span class="pnum">P07</span><span class="ptext">AAWG</span></div>
+        <div class="port"><span class="pnum">P08</span><span class="ptext">IX Messaging</span></div>
+        <div class="port"><span class="pnum">P09</span><span class="ptext">IX Workplace</span></div>
+        <div class="port"><span class="pnum">P10</span><span class="ptext">Breeze</span></div>
+        <div class="port"><span class="pnum">P11</span><span class="ptext">AES</span></div>
+        <div class="port"><span class="pnum">P12</span><span class="ptext">IPO</span></div>
+        <div class="port"><span class="pnum">P13</span><span class="ptext">AACC</span></div>
+        <div class="port"><span class="pnum">P14</span><span class="ptext">AEP</span></div>
+        <div class="port"><span class="pnum">P15</span><span class="ptext">IVR</span></div>
+        <div class="port"><span class="pnum">P16</span><span class="ptext">WFO</span></div>
+        <div class="port"><span class="pnum">P17</span><span class="ptext">Routing</span></div>
+      </div>
+    </div>
+
+    <div class="rack">
+      <div class="rack-label">VoIP Protocols &amp; Tools</div>
+      <div class="port-grid">
+        <div class="port"><span class="pnum">T01</span><span class="ptext">SIP</span></div>
+        <div class="port"><span class="pnum">T02</span><span class="ptext">H.323 / H.248</span></div>
+        <div class="port"><span class="pnum">T03</span><span class="ptext">RTP / RTCP</span></div>
+        <div class="port"><span class="pnum">T04</span><span class="ptext">SRTP</span></div>
+        <div class="port"><span class="pnum">T05</span><span class="ptext">WebRTC</span></div>
+        <div class="port"><span class="pnum">T06</span><span class="ptext">TLS / SSL</span></div>
+        <div class="port"><span class="pnum">T07</span><span class="ptext">TCP/IP</span></div>
+        <div class="port"><span class="pnum">T08</span><span class="ptext">TDM</span></div>
+        <div class="port"><span class="pnum">T09</span><span class="ptext">SIP Trunking</span></div>
+        <div class="port"><span class="pnum">T10</span><span class="ptext">Wireshark</span></div>
+      </div>
+    </div>
+
+    <div class="rack">
+      <div class="rack-label">Networking &amp; Infrastructure</div>
+      <div class="port-grid">
+        <div class="port"><span class="pnum">N01</span><span class="ptext">Linux Administration</span></div>
+        <div class="port"><span class="pnum">N02</span><span class="ptext">VMware</span></div>
+        <div class="port"><span class="pnum">N03</span><span class="ptext">Azure Cloud</span></div>
+        <div class="port"><span class="pnum">N04</span><span class="ptext">QoS</span></div>
+        <div class="port"><span class="pnum">N05</span><span class="ptext">LAN / WAN</span></div>
+        <div class="port"><span class="pnum">N06</span><span class="ptext">Firewall / VPN</span></div>
+        <div class="port"><span class="pnum">N07</span><span class="ptext">VLAN</span></div>
+        <div class="port"><span class="pnum">N08</span><span class="ptext">DHCP</span></div>
+        <div class="port"><span class="pnum">N09</span><span class="ptext">DNS</span></div>
+        <div class="port"><span class="pnum">N10</span><span class="ptext">NTP</span></div>
+        <div class="port"><span class="pnum">N11</span><span class="ptext">Proxy</span></div>
+      </div>
+    </div>
+
+    <div class="competencies">
+      <div class="skill-chip">Incident &amp; Problem Mgmt <span>(Jira, ServiceNow)</span></div>
+      <div class="skill-chip"><span>SLA</span> &amp; Vendor Management</div>
+      <div class="skill-chip">Root Cause Analysis</div>
+      <div class="skill-chip">Cloud Architecture <span>(AWS)</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="softskills">
+  <div class="wrap">
+    <span class="section-tag">05 · Approach</span>
+    <h2 style="margin-bottom:32px;">Soft Skills</h2>
+    <div class="soft-grid">
+      <div class="soft-item"><span class="stag">Communication</span><p>Excellent verbal &amp; written communication across technical and client-facing contexts.</p></div>
+      <div class="soft-item"><span class="stag">Leadership</span><p>Team collaboration and leadership across cross-functional voice operations.</p></div>
+      <div class="soft-item"><span class="stag">Customer Focus</span><p>Customer-centric approach proven through repeat satisfaction awards.</p></div>
+      <div class="soft-item"><span class="stag">Adaptability</span><p>Comfortable shifting across tools, teams, and incident priorities.</p></div>
+      <div class="soft-item"><span class="stag">Time Management</span><p>Reliable delivery against SLA windows and project deadlines.</p></div>
+      <div class="soft-item"><span class="stag">Stakeholder Mgmt</span><p>Vendor and stakeholder coordination across multi-site deployments.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="certs">
+  <div class="wrap">
+    <span class="section-tag">06 · Credentials</span>
+    <h2 style="margin-bottom:30px;">Certifications</h2>
+    <div class="cert-grid">
+      <div class="cert-card"><div class="cert-badge">AWS</div><div><h3>AWS Certified Cloud Practitioner</h3><p>Foundational cloud concepts, services, and architecture.</p></div></div>
+      <div class="cert-card"><div class="cert-badge">AWS</div><div><h3>AWS Certified Solutions Architect – Associate</h3><p>Designing resilient, cost-aware cloud infrastructure.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="awards">
+  <div class="wrap">
+    <span class="section-tag">07 · Recognition</span>
+    <h2 style="margin-bottom:30px;">Awards</h2>
+    <div class="awards-list">
+      <div class="award-item"><span class="icon">＋</span><p>Customer Satisfaction Awards across multiple quarters</p></div>
+      <div class="award-item"><span class="icon">＋</span><p>Best Quarterly Performer Award</p></div>
+      <div class="award-item"><span class="icon">＋</span><p>Voice of the Client &amp; Client Choice Awards</p></div>
+      <div class="award-item"><span class="icon">＋</span><p>Multiple Client / Business Partner Appreciations to Operations Manager</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <span class="section-tag">08 · Reach Out</span>
+      <h2 style="margin-bottom:18px;">Contact</h2>
+      <div class="contact-links">
+        <a href="mailto:nitishte.nit@gmail.com">nitishte.nit@gmail.com</a>
+        <a href="tel:+64220184874">+64 220184874</a>
+        <span style="color:var(--ink-muted);font-size:0.98rem;">Hamilton, WKO 3206, New Zealand</span>
+      </div>
+    </div>
+    <a class="btn solid" href="https://canva.link/7ak440e4yow6yxh" target="_blank" rel="noopener noreferrer">View CV</a>
+  </div>
+</section>
+
+<footer>
+  <p>NITISH TE · NETWORK &amp; VOIP ENGINEER · © 2026</p>
+</footer>
+
+
+
+</body></html>
