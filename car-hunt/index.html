@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Car Hunt NZ">
+<title>Car Hunt NZ</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+--bg:#f0eeea;--surface:#fff;--surface2:#f6f5f2;
+--text:#181715;--text2:#5a5956;--text3:#97958f;
+--border:rgba(0,0,0,.09);--border2:rgba(0,0,0,.16);
+--accent:#1a6dd4;--accent-bg:#e8f0fd;--accent-text:#0c3f80;
+--danger:#d03b3b;--danger-bg:#fdeaea;--danger-text:#7a1f1f;
+--warn-bg:#fef4e0;--warn-text:#7a4a00;
+--r:12px;--r-sm:8px;
+--steal-bg:#e0f5ed;--steal-txt:#065038;--steal-chart:#1D9E75;
+--good-bg:#e8f2dc;--good-txt:#244f08;--good-chart:#639922;
+--fair-bg:#faeeda;--fair-txt:#5a3200;--fair-chart:#BA7517;
+--high-bg:#faece6;--high-txt:#6b2510;--high-chart:#D85A30;
+--over-bg:#fce9e9;--over-txt:#6e1818;--over-chart:#E24B4A;
+}
+@media(prefers-color-scheme:dark){:root{
+--bg:#111110;--surface:#1d1d1c;--surface2:#252523;
+--text:#f0eeeb;--text2:#a6a49f;--text3:#686663;
+--border:rgba(255,255,255,.09);--border2:rgba(255,255,255,.18);
+--accent-bg:#0e2a5a;--accent-text:#7db3f5;
+--danger-bg:#3d1212;--danger-text:#f08080;
+--warn-bg:#3d2a00;--warn-text:#f0c060;
+--steal-bg:#062e1f;--steal-txt:#5fe0b0;
+--good-bg:#102808;--good-txt:#90d050;
+--fair-bg:#2e1e00;--fair-txt:#f0a830;
+--high-bg:#2e1000;--high-txt:#f07840;
+--over-bg:#2e0808;--over-txt:#f08080;
+}}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:16px;line-height:1.5}
+#app{display:flex;flex-direction:column;min-height:100dvh;max-width:600px;margin:0 auto}
+.top-bar{position:sticky;top:0;z-index:10;background:var(--bg);padding:env(safe-area-inset-top) 0 0;border-bottom:0.5px solid var(--border)}
+.top-bar-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 16px}
+.top-title{font-size:17px;font-weight:500}
+.top-sub{font-size:13px;color:var(--text3);margin-top:1px}
+.content{flex:1;padding:16px;padding-bottom:calc(env(safe-area-inset-bottom) + 20px)}
+.card{background:var(--surface);border:.5px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-bottom:12px}
+.card-tap{cursor:pointer;transition:background .1s}
+.card-tap:active{background:var(--surface2)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.col{display:flex;flex-direction:column;gap:2px}
+.name{font-size:16px;font-weight:500}
+.sub{font-size:13px;color:var(--text2)}
+.muted{font-size:12px;color:var(--text3)}
+.pill{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:500;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.pill-sm{font-size:10px;padding:2px 7px}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.stat-box{background:var(--surface2);border-radius:var(--r-sm);padding:10px 12px}
+.stat-lbl{font-size:11px;color:var(--text3);margin-bottom:2px}
+.stat-val{font-size:16px;font-weight:500}
+.progress{height:3px;background:var(--surface2);border-radius:99px;margin-top:10px}
+.prog-fill{height:3px;border-radius:99px;transition:width .3s}
+.check-item{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:.5px solid var(--border)}
+.check-item:last-child{border-bottom:none}
+.check-item input[type=checkbox]{width:20px;height:20px;flex-shrink:0;accent-color:var(--steal-chart)}
+.check-label{font-size:14px;flex:1}
+.verdict-panel{border-radius:var(--r);padding:14px 16px;margin-bottom:12px}
+.verdict-big{font-size:22px;font-weight:500;margin-bottom:2px}
+.verdict-sub{font-size:13px;opacity:.85;margin-bottom:10px}
+.price-bar-row{display:flex;align-items:center;gap:8px;margin-top:6px}
+.price-bar-lbl{font-size:12px;width:58px;flex-shrink:0}
+.price-bar-track{flex:1;height:6px;background:rgba(0,0,0,.12);border-radius:99px}
+.price-bar-fill{height:6px;border-radius:99px}
+.price-bar-val{font-size:12px;width:72px;text-align:right;flex-shrink:0}
+button{border:.5px solid var(--border2);border-radius:var(--r-sm);background:var(--surface);color:var(--text);font-size:14px;padding:10px 16px;cursor:pointer;font-family:inherit;transition:background .1s}
+button:active{background:var(--surface2)}
+.btn-primary{background:var(--accent);color:#fff;border-color:transparent}
+.btn-primary:active{background:#1558b0}
+.btn-danger{color:var(--danger);border-color:var(--danger);background:var(--danger-bg)}
+.btn-row{display:flex;gap:8px;margin-top:16px}
+.btn-row button{flex:1}
+.back-btn{display:flex;align-items:center;gap:6px;background:none;border:none;color:var(--text2);font-size:14px;padding:0;margin-bottom:14px}
+input,select,textarea{width:100%;background:var(--surface);border:.5px solid var(--border2);border-radius:var(--r-sm);color:var(--text);font-size:15px;font-family:inherit;padding:11px 13px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
+textarea{resize:vertical;min-height:70px}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:13px;color:var(--text2);margin-bottom:5px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.empty-state{text-align:center;padding:60px 20px;color:var(--text3)}
+.empty-state i{font-size:48px;display:block;margin-bottom:14px;color:var(--text3)}
+.empty-state p{font-size:15px;margin-bottom:6px;color:var(--text2)}
+.empty-state small{font-size:13px}
+.add-fab{position:fixed;bottom:calc(env(safe-area-inset-bottom)+24px);right:20px;width:52px;height:52px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:20}
+.chart-wrap{position:relative;width:100%}
+.warn-bar{background:var(--danger-bg);border:.5px solid var(--danger);border-radius:var(--r-sm);padding:10px 14px;display:flex;align-items:center;gap:8px;margin-bottom:12px;font-size:13px;color:var(--danger-text)}
+.link-btn{display:inline-flex;align-items:center;gap:6px;color:var(--accent);font-size:14px;text-decoration:none;padding:6px 0}
+.preview-box{background:var(--surface2);border-radius:var(--r-sm);padding:12px 14px;margin-top:4px;font-size:13px;color:var(--text2);min-height:40px;transition:background .2s,color .2s}
+.section-title{font-size:14px;font-weight:500;margin-bottom:10px}
+.chart-legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+.chart-legend span{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--text2)}
+.chart-legend i{width:10px;height:10px;border-radius:2px;display:inline-block;flex-shrink:0}
+.sep{border:none;border-top:.5px solid var(--border);margin:14px 0}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="top-bar"><div class="top-bar-inner" id="top-bar-content"></div></div>
+  <div class="content" id="content"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const KEY='car-hunt-nz-v1';
+let cars=JSON.parse(localStorage.getItem(KEY)||'[]');
+function save(){localStorage.setItem(KEY,JSON.stringify(cars));}
+
+const FAIR_BASE={
+  2000:1500,2001:1900,2002:2200,2003:2600,2004:3000,2005:3500,
+  2006:4000,2007:4500,2008:5000,2009:5700,2010:6400,2011:7200,
+  2012:8100,2013:9200,2014:10600,2015:12200,2016:14000,2017:15800,
+  2018:18500,2019:21500,2020:25000,2021:28500,2022:33500,2023:39000,2024:45000
+};
+
+const VERDICTS=[
+  {max:.80,label:'Steal',desc:'Well below market',key:'steal'},
+  {max:.92,label:'Good deal',desc:'Below market',key:'good'},
+  {max:1.08,label:'Fair',desc:'About market rate',key:'fair'},
+  {max:1.25,label:'High',desc:'Above market',key:'high'},
+  {max:99,label:'Overpriced',desc:'Well above market',key:'over'},
+];
+
+const CHECKS=[
+  {id:'recall',label:'VIN recall check — Takata airbag resolved',crit:true},
+  {id:'service',label:'Service history present',crit:true},
+  {id:'cold',label:'Cold start — no stall or rough idle',crit:true},
+  {id:'mechanic',label:'Independent mechanic check done',crit:true},
+  {id:'trans',label:'Clutch / gearbox shifts smoothly',crit:false},
+  {id:'water',label:'No water leaks (hatch, spare well)',crit:false},
+  {id:'rust',label:'Rust — wheel arches, rockers, tailgate',crit:false},
+  {id:'paint',label:'Paint OK — hood and roof',crit:false},
+  {id:'ac',label:'AC blows cold',crit:false},
+  {id:'oil',label:'Oil clean, correct level',crit:false},
+];
+
+const STATUS=['Watching','To inspect','Inspected','Passed','Rejected'];
+
+function fairVal(year,km){
+  if(!year||!km) return 0;
+  const base=FAIR_BASE[year]||FAIR_BASE[2010];
+  const adj=Math.max(-3000,Math.min(3000,Math.round(-(km-100000)/10000*200)));
+  return Math.max(800,base+adj);
+}
+
+function getVerdict(price,fair){
+  if(!price||!fair) return null;
+  const r=price/fair;
+  const v=VERDICTS.find(x=>r<=x.max)||VERDICTS[VERDICTS.length-1];
+  return {
+    ...v,
+    bg:`var(--${v.key}-bg)`,color:`var(--${v.key}-txt)`,
+    chart:({steal:'#1D9E75',good:'#639922',fair:'#BA7517',high:'#D85A30',over:'#E24B4A'})[v.key]
+  };
+}
+
+function fmt(n){return n?Math.round(n).toLocaleString('en-NZ'):'—';}
+function pctDiff(a,b){return b?Math.round(Math.abs(a-b)/b*100):0;}
+function doneCount(car){return CHECKS.filter(c=>car.cl?.[c.id]).length;}
+function flagCount(car){return CHECKS.filter(c=>c.crit&&!car.cl?.[c.id]).length;}
+
+let view='list', selId=null, confirmDel=false, chartInst=null;
+
+function go(v,id=null){view=v;selId=id;confirmDel=false;destroyChart();render();}
+
+function destroyChart(){if(chartInst){chartInst.destroy();chartInst=null;}}
+
+function icon(n,sz){const i=document.createElement('i');i.className='ti ti-'+n;if(sz)i.style.fontSize=sz+'px';i.setAttribute('aria-hidden','true');return i;}
+
+function pill(txt,bg,color,sm=false){
+  const s=document.createElement('span');
+  s.className='pill'+(sm?' pill-sm':'');
+  s.style.background=bg; s.style.color=color;
+  s.textContent=txt; return s;
+}
+
+function el(tag,cls,attrs){
+  const e=document.createElement(tag);
+  if(cls) e.className=cls;
+  if(attrs) Object.entries(attrs).forEach(([k,v])=>{
+    if(k.startsWith('on')) e[k]=v;
+    else if(k==='style'&&typeof v==='object') Object.assign(e.style,v);
+    else e.setAttribute(k,v);
+  });
+  return e;
+}
+
+function renderList(){
+  const top=document.getElementById('top-bar-content');
+  top.innerHTML='';
+  const left=el('div','col');
+  left.innerHTML='<span class="top-title">Car Hunt NZ</span>';
+  const sub=el('span','sub');sub.textContent=cars.length+' car'+(cars.length!==1?'s':'')+' tracked';left.appendChild(sub);
+  top.appendChild(left);
+  const addBtn=el('button','',{onclick:()=>go('add')});addBtn.append(icon('plus',18),' Add');
+  top.appendChild(addBtn);
+
+  const content=document.getElementById('content');
+  content.innerHTML='';
+
+  if(cars.length===0){
+    const e=el('div','empty-state');
+    const ico=icon('car-suv',48);ico.style.display='block';ico.style.margin='0 auto 14px';
+    e.append(ico,Object.assign(el('p'),'',{}));
+    e.querySelector('p').textContent='No cars tracked yet.';
+    const sm=el('small');sm.textContent='Tap Add to start hunting.';e.appendChild(sm);
+    content.appendChild(e);
+    return;
+  }
+
+  if(cars.length>=2){
+    const cmpCard=el('div','card');
+    const lbl=el('p','section-title');lbl.textContent='Price comparison';
+    const legend=el('div','chart-legend');
+    [['Asking price','#888780'],['Fair value','#c0bfb8']].forEach(([l,c])=>{
+      const li=el('span');const dot=el('i');dot.style.background=c;li.append(dot,l);legend.appendChild(li);
+    });
+    const wrap=el('div','chart-wrap');
+    const cv=el('canvas','',{id:'cmp-canvas',role:'img','aria-label':'Price comparison chart'});
+    cv.textContent='Comparison chart';
+    wrap.appendChild(cv);
+    cmpCard.append(lbl,legend,wrap);
+    content.appendChild(cmpCard);
+    setTimeout(()=>{
+      const c=document.getElementById('cmp-canvas');if(!c)return;
+      destroyChart();
+      const labels=cars.map(c=>c.year+' '+c.make.slice(0,7));
+      const prices=cars.map(c=>c.price||0);
+      const fairs=cars.map(c=>fairVal(c.year,c.km));
+      const colors=cars.map(c=>{const v=getVerdict(c.price,fairVal(c.year,c.km));return v?v.chart:'#888780';});
+      const isDark=matchMedia('(prefers-color-scheme:dark)').matches;
+      const gc=isDark?'#2c2c2a':'#e1e0d9'; const tc=isDark?'#a6a49f':'#5a5956';
+      const h=Math.max(140,cars.length*54+60);
+      c.parentElement.style.height=h+'px';
+      chartInst=new Chart(c,{type:'bar',
+        data:{labels,datasets:[
+          {label:'Asking',data:prices,backgroundColor:colors,borderRadius:4,borderSkipped:'start',barPercentage:.55},
+          {label:'Fair',data:fairs,backgroundColor:isDark?'#3a3a38':'#c0bfb8',borderRadius:4,borderSkipped:'start',barPercentage:.28}
+        ]},
+        options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+          plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' $'+fmt(ctx.raw)}}},
+          scales:{x:{grid:{color:gc},ticks:{color:tc,callback:v=>'$'+Math.round(v/1000)+'k'},border:{display:false}},
+            y:{grid:{display:false},ticks:{color:tc},border:{display:false}}}}
+      });
+    },80);
+  }
+
+  cars.forEach(car=>{
+    const fair=fairVal(car.year,car.km);
+    const v=getVerdict(car.price,fair);
+    const done=doneCount(car);
+    const flags=flagCount(car);
+    const diff=fair&&car.price?Math.abs(car.price-fair):0;
+    const above=car.price>fair;
+
+    const card=el('div','card card-tap',{onclick:()=>go('detail',car.id)});
+    const row=el('div','row');
+    const info=el('div','col');
+    const nameEl=el('span','name');nameEl.textContent=car.year+' '+car.make+' '+car.model;
+    const subEl=el('span','sub');subEl.textContent=fmt(car.km)+' km · $'+fmt(car.price);
+    info.append(nameEl,subEl);
+    const badges=el('div','',{style:{display:'flex',gap:'5px',flexWrap:'wrap',justifyContent:'flex-end'}});
+    if(v) badges.appendChild(pill(v.label,v.bg,v.color));
+    if(flags>0) badges.appendChild(pill(flags+'⚑','var(--danger-bg)','var(--danger-text)',true));
+    row.append(info,badges);
+    card.appendChild(row);
+    if(fair&&car.price){
+      const hint=el('p','muted',{style:{marginTop:'5px'}});
+      hint.textContent=(diff?'$'+fmt(diff)+' '+(above?'above':'below')+' market · ':'' )+'Fair ~$'+fmt(fair);
+      card.appendChild(hint);
+    }
+    const bar=el('div','progress');
+    const fill=el('div','prog-fill',{style:{width:Math.round(done/CHECKS.length*100)+'%',background:done===CHECKS.length?'var(--steal-chart)':'var(--accent)'}});
+    bar.appendChild(fill);card.appendChild(bar);
+    const pText=el('p','muted',{style:{marginTop:'3px'}});pText.textContent=done+'/'+CHECKS.length+' checks done';
+    card.appendChild(pText);
+    content.appendChild(card);
+  });
+}
+
+function renderDetail(){
+  const car=cars.find(c=>c.id===selId);
+  if(!car){go('list');return;}
+
+  const fair=fairVal(car.year,car.km);
+  const v=getVerdict(car.price,fair);
+  const flags=flagCount(car);
+  const done=doneCount(car);
+  const diff=car.price&&fair?car.price-fair:0;
+  const pct=pctDiff(car.price,fair);
+
+  const top=document.getElementById('top-bar-content');
+  top.innerHTML='';
+  const backBtn=el('button','back-btn',{onclick:()=>go('list')});
+  backBtn.append(icon('arrow-left',16),' Back');
+  const titleEl=el('span','top-title');titleEl.textContent=car.year+' '+car.make+' '+car.model;
+  top.append(backBtn,titleEl);
+
+  const content=document.getElementById('content');
+  content.innerHTML='';
+
+  if(confirmDel){
+    const ov=el('div','',{style:{background:'rgba(0,0,0,.35)',borderRadius:'var(--r)',padding:'28px 20px',display:'flex',alignItems:'center',justifyContent:'center',minHeight:'130px',marginBottom:'14px'}});
+    const box=el('div','card',{style:{textAlign:'center',maxWidth:'260px',width:'100%',border:'.5px solid var(--danger)'}});
+    const ttl=el('p','',{style:{fontWeight:'500',marginBottom:'4px'}});ttl.textContent='Remove '+car.make+' '+car.model+'?';
+    const stl=el('p','muted');stl.textContent="Can't be undone.";
+    const br=el('div','btn-row');
+    const cancel=el('button','',{onclick:()=>{confirmDel=false;render();}});cancel.textContent='Cancel';
+    const conf=el('button','btn-danger',{onclick:()=>{cars=cars.filter(c=>c.id!==car.id);save();go('list');}});conf.textContent='Remove';
+    br.append(cancel,conf);box.append(ttl,stl,br);ov.appendChild(box);content.appendChild(ov);
+  }
+
+  if(v&&fair&&car.price){
+    const vp=el('div','verdict-panel',{style:{background:v.bg}});
+    const vRow=el('div','row');
+    const vlbl=el('div','verdict-big',{style:{color:v.color}});vlbl.textContent=v.label;
+    const vpct=el('span','',{style:{fontSize:'13px',color:v.color}});vpct.textContent=pct+'% '+(diff>0?'above':'below')+' market';
+    vRow.append(vlbl,vpct);
+    const vsub=el('p','verdict-sub',{style:{color:v.color}});
+    vsub.textContent=v.desc+'. '+(diff===0?'Right at fair market value.':(diff>0?'$'+fmt(Math.abs(diff))+' above what market suggests.':'Saving $'+fmt(Math.abs(diff))+' vs market.'));
+    vp.append(vRow,vsub);
+    const maxV=Math.max(car.price,fair)*1.05;
+    [['Asking',car.price,v.chart],['Fair',fair,'#B4B2A9']].forEach(([lbl,val,clr])=>{
+      const rw=el('div','price-bar-row');
+      const l=el('span','price-bar-lbl',{style:{color:v.color}});l.textContent=lbl;
+      const track=el('div','price-bar-track');
+      const fill=el('div','price-bar-fill',{style:{width:Math.round(val/maxV*100)+'%',background:clr}});
+      track.appendChild(fill);
+      const vv=el('span','price-bar-val',{style:{color:v.color}});vv.textContent='$'+fmt(val);
+      rw.append(l,track,vv);vp.appendChild(rw);
+    });
+    content.appendChild(vp);
+  }
+
+  if(flags>0){
+    const w=el('div','warn-bar');
+    w.append(icon('alert-triangle',16),' '+flags+' critical check'+(flags>1?'s':'')+' still to do');
+    content.appendChild(w);
+  }
+
+  const grid=el('div','stat-grid');
+  [{lbl:'Asking',val:'$'+fmt(car.price)},{lbl:'Fair value',val:fair?'~$'+fmt(fair):'Need km+year'},{lbl:'Odometer',val:fmt(car.km)+' km'},{lbl:'Year',val:car.year||'—'}].forEach(s=>{
+    const sb=el('div','stat-box');
+    const lbl=el('div','stat-lbl');lbl.textContent=s.lbl;
+    const val=el('div','stat-val');val.textContent=s.val;
+    sb.append(lbl,val);grid.appendChild(sb);
+  });
+  content.appendChild(grid);
+
+  const statusRow=el('div','',{style:{display:'flex',alignItems:'center',gap:'8px',marginBottom:'14px',flexWrap:'wrap'}});
+  const statusLbl=el('span','muted');statusLbl.textContent='Status:';
+  const sel=el('select','',{onchange:(e)=>{car.status=e.target.value;save();render();}});
+  STATUS.forEach(s=>{const o=document.createElement('option');o.textContent=s;o.selected=s===car.status;sel.appendChild(o);});
+  sel.style.width='auto';sel.style.flex='1';
+  const delBtn=el('button','btn-danger',{style:{whiteSpace:'nowrap'},onclick:()=>{confirmDel=true;render();}});
+  delBtn.append(icon('trash',14),' Remove');
+  statusRow.append(statusLbl,sel,delBtn);
+  content.appendChild(statusRow);
+
+  const hr=el('hr','sep');content.appendChild(hr);
+
+  const chkLbl=el('p','section-title');chkLbl.textContent='Inspection checklist';
+  content.appendChild(chkLbl);
+  const chkCard=el('div','card');
+  CHECKS.forEach(item=>{
+    const row=el('div','check-item');
+    const cb=el('input','',{type:'checkbox'});cb.checked=!!car.cl?.[item.id];
+    cb.addEventListener('change',()=>{if(!car.cl)car.cl={};car.cl[item.id]=cb.checked;save();});
+    const lbl=el('label','check-label');lbl.textContent=item.label;
+    row.append(cb,lbl);
+    if(item.crit) row.appendChild(pill('critical','var(--danger-bg)','var(--danger-text)',true));
+    chkCard.appendChild(row);
+  });
+  content.appendChild(chkCard);
+
+  const notesLbl=el('p','section-title');notesLbl.textContent='Notes';
+  content.appendChild(notesLbl);
+  const ta=el('textarea','',{placeholder:'Seller details, impressions...'});
+  ta.value=car.notes||'';
+  let nt;ta.addEventListener('input',()=>{clearTimeout(nt);nt=setTimeout(()=>{car.notes=ta.value;save();},400);});
+  content.appendChild(ta);
+
+  if(car.url){
+    const lnk=el('a','link-btn',{href:car.url,target:'_blank'});
+    lnk.append(icon('external-link',14),' View listing on Trade Me');
+    content.appendChild(lnk);
+  }
+}
+
+function renderAdd(){
+  const top=document.getElementById('top-bar-content');
+  top.innerHTML='';
+  const backBtn=el('button','back-btn',{onclick:()=>go('list')});
+  backBtn.append(icon('arrow-left',16),' Back');
+  const ttl=el('span','top-title');ttl.textContent='Add a car';
+  top.append(backBtn,ttl);
+
+  const content=document.getElementById('content');
+  content.innerHTML='';
+
+  const refs={};
+  const grid=el('div','form-grid');
+  [{k:'make',lbl:'Make',ph:'Honda'},{k:'model',lbl:'Model',ph:'Fit'}].forEach(f=>{
+    const wrap=el('div','field');
+    const lbl=el('label');lbl.textContent=f.lbl;
+    const inp=el('input','',{type:'text',placeholder:f.ph});
+    refs[f.k]=inp;wrap.append(lbl,inp);grid.appendChild(wrap);
+  });
+  content.appendChild(grid);
+
+  const grid2=el('div','form-grid');
+  [{k:'year',lbl:'Year',ph:'2008',t:'number'},{k:'km',lbl:'Odometer (km)',ph:'152000',t:'number'},{k:'price',lbl:'Asking price ($)',ph:'5500',t:'number'}].forEach(f=>{
+    const wrap=el('div','field');
+    const lbl=el('label');lbl.textContent=f.lbl;
+    const inp=el('input','',{type:f.t,placeholder:f.ph,inputmode:'numeric'});
+    refs[f.k]=inp;wrap.append(lbl,inp);grid2.appendChild(wrap);
+  });
+  const swrap=el('div','field');
+  const slbl=el('label');slbl.textContent='Status';
+  const sel=el('select');STATUS.forEach(s=>{const o=document.createElement('option');o.textContent=s;sel.appendChild(o);});
+  swrap.append(slbl,sel);grid2.appendChild(swrap);
+  content.appendChild(grid2);
+
+  const preview=el('div','preview-box');preview.textContent='Enter year, km and price to preview the deal verdict.';
+  content.appendChild(preview);
+
+  function updatePreview(){
+    const yr=parseInt(refs.year.value)||0,km=parseInt(refs.km.value)||0,pr=parseInt(refs.price.value)||0;
+    const fair=fairVal(yr,km);const v=getVerdict(pr,fair);
+    if(v&&fair&&pr){
+      preview.textContent=v.label+' · Fair value ~$'+fmt(fair)+' · '+pctDiff(pr,fair)+'% '+(pr>fair?'above':'below')+' market';
+      preview.style.background=v.bg;preview.style.color=v.color;
+    } else {
+      preview.textContent='Enter year, km and price to preview the deal verdict.';
+      preview.style.background='';preview.style.color='';
+    }
+  }
+  [refs.year,refs.km,refs.price].forEach(i=>i.addEventListener('input',updatePreview));
+
+  const uwrap=el('div','field');const ulbl=el('label');ulbl.textContent='Trade Me listing URL (optional)';
+  const urlI=el('input','',{type:'url',placeholder:'https://www.trademe.co.nz/...'});
+  uwrap.append(ulbl,urlI);content.appendChild(uwrap);
+
+  const nwrap=el('div','field');const nlbl=el('label');nlbl.textContent='Notes (optional)';
+  const ta=el('textarea','',{placeholder:'First impressions, seller info...'});
+  nwrap.append(nlbl,ta);content.appendChild(nwrap);
+
+  const br=el('div','btn-row');
+  const saveBtn=el('button','btn-primary',{onclick:()=>{
+    const make=refs.make.value.trim(),model=refs.model.value.trim();
+    if(!make||!model){refs.make.focus();return;}
+    const car={id:Date.now().toString(),make,model,
+      year:parseInt(refs.year.value)||0,km:parseInt(refs.km.value)||0,
+      price:parseInt(refs.price.value)||0,url:urlI.value.trim(),
+      notes:ta.value.trim(),status:sel.value,cl:{},
+      added:new Date().toLocaleDateString('en-NZ')};
+    cars.unshift(car);save();go('detail',car.id);
+  }});saveBtn.textContent='Add car';
+  const cancel=el('button','',{onclick:()=>go('list')});cancel.textContent='Cancel';
+  br.append(saveBtn,cancel);content.appendChild(br);
+}
+
+function render(){
+  if(view==='list') renderList();
+  else if(view==='detail') renderDetail();
+  else if(view==='add') renderAdd();
+}
+
+render();
+</script>
+</body>
+</html>
